@@ -7,11 +7,14 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'example\\container' => '/Container.php',
                 'example\\containerid' => '/ContainerId.php',
                 'example\\exception' => '/exceptions/Exception.php',
+                'example\\invalidcapacityexception' => '/exceptions/InvalidCapacityException.php',
                 'example\\invalidcontaineridexception' => '/exceptions/InvalidContainerIdException.php',
                 'example\\invalidnameexception' => '/exceptions/InvalidNameException.php',
-                'example\\port' => '/Port.php'
+                'example\\port' => '/Port.php',
+                'example\\ship' => '/Ship.php'
             );
         }
         $cn = strtolower($class);
