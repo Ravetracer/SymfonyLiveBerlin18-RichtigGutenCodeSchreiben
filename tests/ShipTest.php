@@ -17,7 +17,7 @@ class ShipTest extends TestCase
     public function test_ship_has_a_name(): void
     {
         $shipName = 'Excelsior';
-        $ship = new Ship($shipName);
+        $ship = new Ship($shipName, Ship::POSITION_PORT, new Port('Gloomhaven'));
 
         $this->assertEquals($shipName, $ship->name());
     }
@@ -26,13 +26,12 @@ class ShipTest extends TestCase
     {
         $this->expectException(InvalidNameException::class);
 
-        $ship = new Ship('');
+        new Ship('', Ship::POSITION_PORT, new Port('Gloomhaven'));
     }
 
     public function test_ship_has_positive_capacity(): void
     {
-        $shipName = 'Excelsior';
-        $ship = new Ship($shipName);
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, new Port('Gloomhaven'));
         $ship->setCapacity(2);
 
         $this->assertGreaterThan(0, $ship->capacity());
@@ -41,19 +40,41 @@ class ShipTest extends TestCase
     public function test_ship_cannot_have_negative_capacity(): void
     {
         $this->expectException(InvalidCapacityException::class);
-        $shipName = 'Excelsior';
-        $ship = new Ship($shipName);
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, new Port('Gloomhavenn'));
         $ship->setCapacity(-2);
     }
 
-    public function skip_test_ship_has_a_position($shipName): void
+    public function test_ship_has_a_position(): void
     {
-        $ship = new Ship($shipName);
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, new Port('Gloomhaven'));
 
-        $position = 'port';
+        $this->assertEquals(Ship::POSITION_PORT, $ship->position());
+    }
+
+    public function test_ship_cannot_have_invalid_position(): void
+    {
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, new Port('Gloomhaven'));
+        $position = 8;
+
+        $this->expectException(InvalidPositionException::class);
 
         $ship->setPosition($position);
+    }
 
-        $this->assertEquals($position, $ship->position());
+    public function test_ship_has_at_least_one_destination_port(): void
+    {
+        $port = new Port('Gloomhaven');
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, $port);
+
+        $this->assertGreaterThan(0, count($ship->ports()));
+    }
+
+    public function test_ship_cannot_have_zero_ports(): void
+    {
+        $port = new Port('Gloomhaven');
+        $ship = new Ship('Excelsior', Ship::POSITION_PORT, $port);
+
+        $this->expectException(InvalidNumberOfPortsException::class);
+        $ship->removePort($port);
     }
 }
