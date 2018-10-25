@@ -11,7 +11,7 @@ namespace example;
 
 use PHPUnit\Framework\TestCase;
 
-class ShipTest extends TestCase
+final class ShipTest extends TestCase
 {
 
     public function test_ship_has_a_name(): void

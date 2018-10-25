@@ -10,7 +10,7 @@
 namespace example;
 
 
-class Ship
+final class Ship
 {
     const POSITION_PORT = 0;
     const POSITION_CARRIER = 1;

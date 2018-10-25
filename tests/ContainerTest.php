@@ -11,7 +11,7 @@ namespace example;
 
 use PHPUnit\Framework\TestCase;
 
-class ContainerTest extends TestCase
+final class ContainerTest extends TestCase
 {
     public function test_has_an_identification(): void
     {

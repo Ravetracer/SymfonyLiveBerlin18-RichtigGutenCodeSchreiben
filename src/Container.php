@@ -10,7 +10,7 @@
 namespace example;
 
 
-class Container
+final class Container
 {
 
     /**

@@ -7,6 +7,7 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'example\\carrier' => '/Carrier.php',
                 'example\\container' => '/Container.php',
                 'example\\containerid' => '/ContainerId.php',
                 'example\\exception' => '/exceptions/Exception.php',
@@ -14,6 +15,7 @@ spl_autoload_register(
                 'example\\invalidcontaineridexception' => '/exceptions/InvalidContainerIdException.php',
                 'example\\invalidnameexception' => '/exceptions/InvalidNameException.php',
                 'example\\invalidnumberofportsexception' => '/exceptions/InvalidNumberOfPortsException.php',
+                'example\\invalidnumberofshipsexception' => '/exceptions/InvalidNumberOfShipsException.php',
                 'example\\invalidportexception' => '/exceptions/InvalidPortException.php',
                 'example\\invalidpositionexception' => '/exceptions/InvalidPositionException.php',
                 'example\\port' => '/Port.php',
